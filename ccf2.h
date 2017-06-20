@@ -23,7 +23,9 @@ int                  g_quai[4];
 char                 *g_meteo[3];
 char                 *g_dest[5];
 t_truck              g_truck[50];
-pthread_mutex_t 	    g_etape;
+extern pthread_mutex_t 	    g_a_dest;
+extern pthread_mutex_t 	    g_a_meteo;
+extern pthread_mutex_t 	    g_a_poids;
 
 void    init_quai();
 
