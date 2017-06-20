@@ -1,6 +1,6 @@
-NAME	=	philo
+NAME	=	CCF2
 
-SRC		=	philosophers.c \
+SRC		=	truck.c \
 			init_utils.c
 
 OBJ		=	$(SRC:.c=.o)

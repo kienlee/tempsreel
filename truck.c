@@ -1,10 +1,10 @@
-#include "philosophers.h"
+#include "truck.h"
 
 int       	 	        g_chopsticks[7];
-t_philosopher           g_dudes[7];
+t_truck           g_dudes[7];
 pthread_mutex_t 	    g_choose = PTHREAD_MUTEX_INITIALIZER;
 
-void 	        philosopher_eating(t_philosopher *p)
+void 	        truck_eating(t_truck *p)
 {
 	p->state = 'E';
 	p->states[p->st_i] = p->state;
@@ -24,7 +24,7 @@ void 	        philosopher_eating(t_philosopher *p)
 	pthread_mutex_unlock(&g_choose);
 }
 
-void 	        philosopher_thinking(t_philosopher *p)
+void 	        truck_thinking(t_truck *p)
 {
 	p->state = 'T';
 	p->states[p->st_i] = p->state;
@@ -38,13 +38,13 @@ void 	        philosopher_thinking(t_philosopher *p)
 	{
 		pthread_mutex_lock(&g_choose);
 		if (g_chopsticks[(p->i + 1) % 7] == 0)
-			philosopher_eating(p);
+			truck_eating(p);
 		else
 			pthread_mutex_unlock(&g_choose);
 	}
 }
 
-void 	philosopher_relax(t_philosopher *p)
+void 	truck_relax(t_truck *p)
 {
 	pthread_mutex_unlock(&g_choose);
 	if (p->state == 'R')
@@ -59,11 +59,11 @@ void 	philosopher_relax(t_philosopher *p)
 
 void                *set_brain(void *arg)
 {
-	t_philosopher 	*p;
+	t_truck 	*p;
 	int 		    left;
 	int 		    right;
 
-	p = (t_philosopher*)arg;
+	p = (t_truck*)arg;
 	fprintf(stdout, "\e[1;%smPhilosopher %d : Came to the table!\e[m\n",p->color, p->i);
 	while (p->rice > 0)
 	{
@@ -71,11 +71,11 @@ void                *set_brain(void *arg)
 		left  = g_chopsticks[p->i];
 		right  = g_chopsticks[(p->i + 1) % 7];
 		if (left == 0 && right == 0 && p->state != 'E')
-			philosopher_eating(p);
+			truck_eating(p);
 		else if (left == 0 && p->state != 'T' && p->state != 'E')
-			philosopher_thinking(p);
+			truck_thinking(p);
 		else
-			philosopher_relax(p);
+			truck_relax(p);
 	}
 	fprintf(stdout, "\e[1;%smPhilosopher %d : Left the table!\e[m\n", p->color, p->i);
 	return (NULL);

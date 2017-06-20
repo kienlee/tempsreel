@@ -1,4 +1,4 @@
-#include "philosophers.h"
+#include "truck.h"
 
 void    init_colors()
 {
@@ -52,7 +52,7 @@ void        wait_for()
   int     i;
 
   i = 0;
-  while (i < 7)
+  while (i < 4)
   {
     pthread_join((g_dudes[i].handler), NULL);
     i = i + 1;
