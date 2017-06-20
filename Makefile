@@ -1,7 +1,7 @@
 NAME	=	CCF2
 
-SRC		=	truck.c \
-			init_utils.c
+SRC		=	main.c \
+			init.c
 
 OBJ		=	$(SRC:.c=.o)
 

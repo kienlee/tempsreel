@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdlib.h>
 #include <unistd.h>
+#include <string.h>
 
 typedef struct      s_truck
 {
@@ -17,6 +18,20 @@ typedef struct      s_truck
     char            *meteo;
     int             poids;
 }                   t_truck;
+
+int                  g_quai[4];
+char                 *g_meteo[3];
+char                 *g_dest[5];
+t_truck              g_truck[50];
+pthread_mutex_t 	    g_etape;
+
+void    init_quai();
+
+void    init_dest();
+
+void    init_resources();
+
+void    init_meteo();
 
 
 #endif /* !CCF2_H_ */
