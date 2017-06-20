@@ -14,10 +14,10 @@ void 	        truck_eating(t_truck *p)
 	pthread_mutex_unlock(&g_choose);
 	fprintf(stdout, "\e[1;%smPhilosopher %d : I'm eating now!\e[m\n", p->color, p->i);
 	sleep(p->time_to_eat);
-	p->rice -= p->hunger;
-	if (p->rice < 0)
-		p->rice = 0;
-	fprintf(stdout, "\e[1;%smPhilosopher %d : I've finished eating %d rices (rest : %d rice)!\e[m\n", p->color,  p->i, p->hunger, p->rice);
+	p->colis -= p->hunger;
+	if (p->colis < 0)
+		p->colis = 0;
+	fprintf(stdout, "\e[1;%smPhilosopher %d : I've finished eating %d colis (rest : %d colis)!\e[m\n", p->color,  p->i, p->hunger, p->colis);
 	pthread_mutex_lock(&g_choose);
 	g_chopsticks[p->i] = 0;
 	g_chopsticks[(p->i + 1) % 7] = 0;
@@ -65,7 +65,7 @@ void                *set_brain(void *arg)
 
 	p = (t_truck*)arg;
 	fprintf(stdout, "\e[1;%smPhilosopher %d : Came to the table!\e[m\n",p->color, p->i);
-	while (p->rice > 0)
+	while (p->colis > 0)
 	{
 		pthread_mutex_lock(&g_choose);
 		left  = g_chopsticks[p->i];

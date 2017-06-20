@@ -16,7 +16,7 @@ typedef struct      s_truck
     int             time_to_eat;
     int             time_to_rest;
     char            *name;
-    int             rice;
+    int             colis;
     int             hunger;
     char            *color;
     char 	        states[512];
